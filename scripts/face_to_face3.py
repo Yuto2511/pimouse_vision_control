@@ -15,7 +15,7 @@ class FaceToFace():
         if rect is not None:
             cv2.rectangle(org,tuple(rect[0:2]),tuple(rect[0:2]+rect[2:4]),(0,255,255),4)
 
-            self.pub.publish(self.bridge.cv2_to_imgmsg(org, "bgr8"))
+        self.pub.publish(self.bridge.cv2_to_imgmsg(org, "bgr8"))
 
     def get_image(self,img):
         try:
@@ -29,6 +29,7 @@ class FaceToFace():
 
         org = self.image_org
         
+        gimg = cv2.cvtColor(org,cv2.COLOR_BGR2GRAY)
         #cvtColor()を使うと画像の色味を変換することができる。
         #COLOR_BGR2GRAYでグレースケール画像に変換している。
         #カスケード型分類器を作る
